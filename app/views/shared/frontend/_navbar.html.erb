@@ -47,12 +47,15 @@
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
-          <a class="button is-primary">
-            <strong>Sign up</strong>
-          </a>
-          <a class="button is-light">
-            Log in
-          </a>
+          <% if user_signed_in? %>
+          <div class="btn is-primary"> <%= current_user.email  %> </div>
+          <%= link_to "Edit" , edit_user_registration_path, data:"get", class:"button is-light" %>
+          <%= link_to "Log out", destroy_user_session_path, data: { "turbo_method": :delete, "turbo_confirm": "確定是否登出" }, class: "button is-danger"%>
+          <% else %>
+          <%= link_to "Log in", new_user_session_path, method: "get", class:"button is-light" %>
+          <%= link_to "Sign up", new_user_registration_path , method: "get", class: "button is-primary" %>
+          <% end %>
+          
         </div>
       </div>
     </div>
