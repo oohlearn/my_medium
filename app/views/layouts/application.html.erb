@@ -12,6 +12,10 @@
 
   <body>
     <%= render "shared/frontend/navbar" %>
-    <%= yield %>
+    <div class="container">
+      <%= yield %>  
+      <!-- 將yield包進去公版裡，container有些格式上的設定 -->
+    </div>
+    
   </body>
 </html>

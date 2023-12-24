@@ -20,37 +20,22 @@
       <a class="navbar-item">
         Documentation
       </a>
-
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          More
-        </a>
-
-        <div class="navbar-dropdown">
-          <a class="navbar-item">
-            About
-          </a>
-          <a class="navbar-item">
-            Jobs
-          </a>
-          <a class="navbar-item">
-            Contact
-          </a>
-          <hr class="navbar-divider">
-          <a class="navbar-item">
-            Report an issue
-          </a>
-        </div>
-      </div>
     </div>
 
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
           <% if user_signed_in? %>
-          <div class="btn is-primary"> <%= current_user.email  %> </div>
-          <%= link_to "Edit" , edit_user_registration_path, data:"get", class:"button is-light" %>
-          <%= link_to "Log out", destroy_user_session_path, data: { "turbo_method": :delete, "turbo_confirm": "確定是否登出" }, class: "button is-danger"%>
+          <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            <%= current_user.email %>
+          </a>
+  
+          <div class="navbar-dropdown">
+          <%= link_to "個人資料" , edit_user_registration_path, data:"get", class:"navbar-item" %>
+          <%= link_to "Log out", destroy_user_session_path, data: { "turbo_method": :delete, "turbo_confirm": "確定是否登出" }, class: "navbar-item"%>
+          </div>
+        </div>
           <% else %>
           <%= link_to "Log in", new_user_session_path, method: "get", class:"button is-light" %>
           <%= link_to "Sign up", new_user_registration_path , method: "get", class: "button is-primary" %>
