@@ -7,6 +7,7 @@ class StoriesController < ApplicationController
 
     def index
         @stories = current_user.stories.order(created_at: :desc)
+        # 按照建立時間降階排序
     end
     
     def new     
@@ -40,6 +41,8 @@ class StoriesController < ApplicationController
     end
 
     def destroy
+        @story.destroy
+        redirect_to stories_path, notice: "故事已刪除"
     end
 
 

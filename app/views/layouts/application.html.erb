@@ -12,6 +12,7 @@
 
   <body>
     <%= render "shared/frontend/navbar" %>
+    <%= render "shared/frontend/flash" if notice %>
     <div class="container">
       <%= yield %>  
       <!-- 將yield包進去公版裡，container有些格式上的設定 -->
