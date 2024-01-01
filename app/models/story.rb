@@ -3,8 +3,16 @@ class Story < ApplicationRecord
   belongs_to :user
   validates :title, presence: true
   default_scope {where(delete_at: nil)}
-  # 上面那行加上去後，所有查詢動作時都會預設加上的delte_at的值是nil的篩選
-  # 也就是會找出沒有被軟刪除的資料
+ # 上面那行加上去後，所有查詢動作時都會預設加上的delte_at的值是nil的篩選
+ # 也就是會找出沒有被軟刪除的資料
+ 
+  extend FriendlyId
+  friendly_id :slug_candidate, use: :slugged 
+  def normalize_friendly_id(input)
+    input.to_s.to_slug.normalize(transliterations: :russian).to_s
+  end
+
+
 
   # 覆寫destroy方法
   def destroy
@@ -29,4 +37,13 @@ class Story < ApplicationRecord
     end
   end
 
+
+  private
+  def slug_candidate  
+    [
+      :title, 
+      [:title, SecureRandom.hex[0,8]]
+    # 用title加上安全模組製造的隨機數，然後取八位數
+    ]
+  end
 end

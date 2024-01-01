@@ -1,7 +1,11 @@
 class ApplicationController < ActionController::Base
     rescue_from ArgumentError, with: :record_not_found
 
+    def configure_permitted_parameters
+        devise_parameter_sanitizer.permit(:account_update, keys: [:username, :intro])
+    end
     private
+    
     def record_not_found
         render file: "#{Rails.root}/public/404.html",
                status: :not_found,

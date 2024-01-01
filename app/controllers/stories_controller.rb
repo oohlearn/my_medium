@@ -19,19 +19,19 @@ class StoriesController < ApplicationController
     def create
         @story = current_user.stories.new(story_params)
         # 按下發布文章的按鈕之後，會多個參數publish出現，然後就將status設為publish
+        @story.publish! if params[:publish]
 
         if @story.save
             if params[:publish]
-                @story.publish!
                 redirect_to stories_path, notice: "已成功發布"
             else
                 redirect_to edit_story_path(@story), notice: "已儲存"
             end
             # 如果有:publish這個參數，就回到故事列表，沒有的話就回到(停在)該故事的edit畫面
         else
-            render :new 
+            render :new
             #重新渲染new的畫面
-            # puts @story.errors.full_messages # 將錯誤訊息輸出到控制台
+            #  puts @story.errors.full_messages # 將錯誤訊息輸出到控制台
         end
     end
 
@@ -41,7 +41,16 @@ class StoriesController < ApplicationController
 
     def update
         if @story.update(story_params)
-            redirect_to stories_path, notice: "故事更新成功"
+            case
+            when params[:publish]
+                @story.publish!
+                redirect_to stories_path, notice: "故事已發佈"
+            when params[:unpublish]
+                @story.unpublish!
+                redirect_to stories_path, notice: "故事已下架"
+            else
+                redirect_to edit_story_path(@story), notice: "故事已儲存"
+            end
         else
             render :edit
         end
@@ -60,7 +69,7 @@ class StoriesController < ApplicationController
     end
 
     def find_story
-        @story = current_user.stories.where(id: params[:id]).first
+        @story = current_user.stories.friendly.find(params[:id])
     end
 
 
