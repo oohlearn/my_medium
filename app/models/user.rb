@@ -5,4 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :stories
+  # validates :username, presence: true, uniqueness: true
+  # 驗證username必填，且不得重複
+
+  has_one_attached :avatar
+
+
 end

@@ -1,12 +1,26 @@
 <h2 class="title"><%= resource_name.to_s.humanize %>個人資料</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+<%= form_for(resource, 
+  as: resource_name, 
+  url: registration_path(resource_name), 
+  html: { multipart: true, method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
     <%= f.label :username, "使用者帳號" %><br />
     <%= f.text_field :username , class: "input is-medium" %>
     <p class="help">範例:@123</p>
+  </div>
+  <div class="field">
+    <%= f.label :avatar, "大頭貼" %><br />
+    <div>
+      <%= f.file_field :avatar %>
+    </div>
+    <%= avatar(current_user) %>
+    
+
+
+    
   </div>
 
   <div class="field">
