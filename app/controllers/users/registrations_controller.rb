@@ -38,31 +38,31 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  def create
-    puts user_params
-    super
-  end
+  # def create
+  #   puts user_params
+  #   super
+  # end
 
-  def update
-    if current_user.update(user_params) 
-      current_user.avatar.attach(params[:avatar])
-      redirect_to current_user
-    else
-      render :edit
-    end
-  end
+  # def update
+  #   if current_user.update(user_params) 
+  #     current_user.avatar.attach(params[:avatar])
+  #     redirect_to current_user
+  #   else
+  #     render :edit
+  #   end
+  # end
   
   private
   
-  def user_params
-    params.require(:user).permit(:username, :email, :password) 
-  end
+  # def user_params
+  #   params.require(:user).permit(:username, :email, :password) 
+  # end
 
 
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :email, :password, :avatar])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:username])
   end
 
   # If you have extra params to permit, append them to the sanitizer.
@@ -71,9 +71,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     
   end
 
-  def update_resource(resource, params)
-    resource.update_without_password(params)
-  end
+
+  # def update_resource(resource, params)
+  #   resource.update_without_password(params)
+  # end
 
   # The path used after sign up.
   # def after_sign_up_path_for(resource)
