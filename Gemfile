@@ -12,8 +12,9 @@ gem 'devise', '~> 4.9', '>= 4.9.3'
 gem 'aasm', '~> 5.5'
 gem 'friendly_id', '~> 5.5', '>= 5.5.1'
 gem 'babosa', '~> 2.0'
-# gem 'webpacker', '~> 5.4', '>= 5.4.4' 更換為下面那個
-gem 'jsbundling-rails', '~> 1.2', '>= 1.2.1'
+gem 'webpacker', '~> 5.4', '>= 5.4.4' 
+# 打包功能用下面那個更換為下面那個，上面那個支援HMR功能
+# gem 'jsbundling-rails', '~> 1.2', '>= 1.2.1'
 
 
 # Use sqlite3 as the database for Active Record
