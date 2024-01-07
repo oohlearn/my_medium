@@ -15,7 +15,9 @@ Rails.application.routes.draw do
   # /@[username]/   當網址只有作者名稱的時候，跑出該作者所有文章
   get "@:username", to: "pages#user", as: "user_page"
 
+  get "/demo", to:"pages#demo"
 
   # Defines the root path route ("/")
   root "pages#index"
+
 end

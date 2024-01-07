@@ -16,3 +16,5 @@
 
 console.log("Hello World from Webpacker");
 // console.log("hello");
+
+import "controllers"

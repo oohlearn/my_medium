@@ -17,6 +17,7 @@ gem 'webpacker', '~> 5.4', '>= 5.4.4'
 # gem 'jsbundling-rails', '~> 1.2', '>= 1.2.1'
 
 
+
 # Use sqlite3 as the database for Active Record
 gem "sqlite3", "~> 1.4"
 
@@ -61,6 +62,7 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+  gem 'foreman', '~> 0.87.2'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
