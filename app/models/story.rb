@@ -12,6 +12,8 @@ class Story < ApplicationRecord
     input.to_s.to_slug.normalize(transliterations: :russian).to_s
   end
 
+  has_one_attached :cover_image
+
 
 
   # 覆寫destroy方法

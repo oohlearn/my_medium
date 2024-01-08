@@ -16,8 +16,7 @@
     <div>
       <%= f.file_field :avatar %>
     </div>
-    <%= avatar(current_user) %>
-    
+    <%= image_tag current_user.avatar if current_user.avatar.attached? %>
     
   </div>
 

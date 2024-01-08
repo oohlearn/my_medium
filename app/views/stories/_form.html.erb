@@ -7,6 +7,14 @@
 
 <%= form_for(story) do |form| %>
     <div class="field">
+        <%= image_tag story.cover_image, class: "cover_image" if story.cover_image.attached? %>
+        <div>
+            <%= form.label :cover_image, "封面圖" %>
+            <%= form.file_field :cover_image %>
+        </div>
+
+    </div>    
+    <div class="field">
         <%= form.label :title, "文章標題" , class: "input" %>
         <%= form.text_field :title , class: "input is-primary is-medium" %>
     </div>
